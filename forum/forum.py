@@ -31,3 +31,7 @@ HTML_WRAP = '''\
   </body>
 </html>
 '''
+# HTML template for an individual comment
+POST = '''\
+    <div class=post><em class=date>%s</em><br>%s</div>
+'''
