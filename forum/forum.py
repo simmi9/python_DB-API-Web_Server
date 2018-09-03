@@ -51,7 +51,8 @@ def post():
   message = request.form['content']
   add_post(message)
   return redirect(url_for('main'))
-
-
+#Running the app server on host 8000
+if __name__ == '__main__':
+  app.run(host='0.0.0.0', port=8000)
 
 
