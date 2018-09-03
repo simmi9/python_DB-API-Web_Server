@@ -44,4 +44,14 @@ def main():
   html = HTML_WRAP % posts
   return html
 
+#POST Request ;saving Post content to Database
+@app.route('/', methods=['POST'])
+def post():
+  '''New post submission.'''
+  message = request.form['content']
+  add_post(message)
+  return redirect(url_for('main'))
+
+
+
 
