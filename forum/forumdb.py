@@ -5,11 +5,11 @@ import psycopg2, bleach
 
 DBNAME = "forum"
 
-POSTS = [("This is the first post.", datetime.datetime.now())]
+# old: POSTS = [("This is the first post.", datetime.datetime.now())]
 
 def get_posts():
   
-#old  """Return all posts from the 'database', most recent first."""
+      """Return all posts from the 'database', most recent first."""
 #old  return reversed(POSTS)
 
       db = psycopg2.connect(database=DBNAME)
@@ -20,6 +20,11 @@ def get_posts():
 
 def add_post(content):
   """Add a post to the 'database' with the current timestamp."""
-  POSTS.append((content, datetime.datetime.now()))
+  #POSTS.append((content, datetime.datetime.now()))
+  db = psycopg2.connect(database=DBNAME)
+  c = db.cursor()
+  c.execute("insert into posts values (%s)", (bleach.clean(content),))  # good
+  db.commit()
+  db.close()
 
 
